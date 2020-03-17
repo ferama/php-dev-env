@@ -2,7 +2,7 @@
 script_dir=$(dirname "$0")
 root=$(cd $script_dir && pwd)
 
-echo "userid=$(id -u)" > $root/.env
+echo "userid=$(id -u):$(id -g)" > $root/.env
 
 mkdir -p www
 

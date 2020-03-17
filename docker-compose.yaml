@@ -31,6 +31,8 @@ services:
      - "80:8080"
     restart: always
     user: "${userid}"
+    environment: 
+      - APACHE_DOCUMENT_ROOT=/var/www/html/blog/public
     volumes:
       - type: bind
         source: ./www
