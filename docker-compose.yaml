@@ -32,13 +32,13 @@ services:
     restart: always
     user: "${userid}"
     environment: 
-      - APACHE_DOCUMENT_ROOT=/var/www/html/blog/public
+      - APACHE_DOCUMENT_ROOT=/var/www/html
     volumes:
       - type: bind
         source: ./www
         target: /var/www/html
     build:
-      context: .
+      context: ./docker
       dockerfile: ./Dockerfile
   
 volumes:
