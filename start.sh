@@ -7,5 +7,5 @@ echo "userid=$(id -u):$(id -g)" > $root/.env
 mkdir -p www
 
 docker-compose build
-docker-compose stop www && docker-compose rm www
-docker-compose up
+# docker-compose stop www && docker-compose rm www
+# docker-compose up

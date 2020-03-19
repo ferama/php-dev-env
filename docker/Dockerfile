@@ -4,25 +4,38 @@ RUN apt-get update \
         unzip \
         zlib1g-dev \
         libzip-dev \
+        libicu-dev \
         libpng-dev \
         libxml2-dev \
         libmagickwand-dev \
+        libgmp3-dev \
         wget \
         git 
 
 RUN pecl install \
-    imagick
+        imagick \
+        #xdebug \
+        uopz \
+        uuid
 
-RUN docker-php-ext-enable imagick
+RUN docker-php-ext-enable \
+        imagick \
+        #xdebug \
+        uopz \ 
+        uuid
+
+RUN docker-php-ext-configure intl
 
 RUN docker-php-ext-install \
-    zip \
-    gd \
-    mysqli \
-    pdo \
-    pdo_mysql \
-    soap
-RUN docker-php-ext-install intl gmp
+        zip \
+        gd \
+        mysqli \
+        pdo \
+        pdo_mysql \
+        soap \
+        intl \
+        gmp \
+        sockets
 
 RUN a2enmod rewrite
 
