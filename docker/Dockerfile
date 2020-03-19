@@ -1,4 +1,5 @@
-FROM php:7.4-apache
+FROM php:7.2.19-apache
+# FROM php:7.4-apache
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         unzip \
@@ -15,14 +16,14 @@ RUN apt-get update \
 RUN pecl install \
         imagick \
         #xdebug \
-        uopz \
-        uuid
+        # uuid \
+        uopz 
 
 RUN docker-php-ext-enable \
         imagick \
         #xdebug \
-        uopz \ 
-        uuid
+        # uuid \
+        uopz
 
 RUN docker-php-ext-configure intl
 
