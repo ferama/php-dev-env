@@ -38,7 +38,13 @@ RUN docker-php-ext-install \
         gmp \
         sockets
 
+ADD setup-composer.sh /
+RUN cd / && ./setup-composer.sh && rm /setup-composer.sh
+
 RUN a2enmod rewrite
+RUN set -ex \
+       && cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini \
+       && sed -i 's/memory_limit = 128M/memory_limit = 2G/g' /usr/local/etc/php/php.ini
 
 RUN sed -ri -e 's/<VirtualHost \*:80>/<VirtualHost \*:8080>/g' /etc/apache2/sites-available/000-default.conf
 RUN sed -ri -e 's/Listen 80/Listen 8080/g' /etc/apache2/ports.conf
@@ -47,8 +53,6 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-ADD setup-composer.sh /
-RUN cd / && ./setup-composer.sh && rm /setup-composer.sh
 ENV HOME /var/www/html
 EXPOSE 8080
 VOLUME [ "/var/www/html" ]
