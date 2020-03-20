@@ -49,7 +49,6 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 ADD setup-composer.sh /
 RUN cd / && ./setup-composer.sh && rm /setup-composer.sh
-# RUN mkdir /tmp/home
-# ENV HOME /tmp/home
+ENV HOME /var/www/html
 EXPOSE 8080
 VOLUME [ "/var/www/html" ]
