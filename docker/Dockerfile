@@ -44,7 +44,7 @@ RUN cd / && ./setup-composer.sh && rm /setup-composer.sh
 RUN a2enmod rewrite
 RUN set -ex \
        && cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini \
-       && sed -i 's/memory_limit = 128M/memory_limit = 2G/g' /usr/local/etc/php/php.ini
+       && sed -i 's/memory_limit = 128M/memory_limit = -1/g' /usr/local/etc/php/php.ini
 
 RUN sed -ri -e 's/<VirtualHost \*:80>/<VirtualHost \*:8080>/g' /etc/apache2/sites-available/000-default.conf
 RUN sed -ri -e 's/Listen 80/Listen 8080/g' /etc/apache2/ports.conf

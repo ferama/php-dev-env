@@ -5,7 +5,9 @@ services:
     image: mysql:5.7
     volumes:
       - db_data:/var/lib/mysql
-    restart: always
+    # restart: never
+    ports:
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: app
@@ -16,10 +18,14 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     environment:
-      - PMA_HOST=db
-      - PMA_USER=app
-      - PMA_PASSWORD=app
-    restart: always
+        - PMA_HOST=db
+        - PMA_USER=app
+        - PMA_PASSWORD=app
+    # environment:
+    #   - PMA_HOST=34.77.48.114
+    #   - PMA_USER=mliguori
+    #   - PMA_PASSWORD=magma19
+    # restart: never
     ports:
       - 8080:80
 
@@ -29,7 +35,7 @@ services:
       - db
     ports:
      - "80:8080"
-    restart: always
+    # restart: never
     user: "${userid}"
     environment: 
       - APACHE_DOCUMENT_ROOT=/var/www/html
