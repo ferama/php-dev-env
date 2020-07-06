@@ -36,7 +36,8 @@ RUN docker-php-ext-install \
         soap \
         intl \
         gmp \
-        sockets
+        sockets \
+        pcntl
 
 ADD setup-composer.sh /
 RUN cd / && ./setup-composer.sh && rm /setup-composer.sh
