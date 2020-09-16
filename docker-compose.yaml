@@ -21,11 +21,6 @@ services:
         - PMA_HOST=db
         - PMA_USER=app
         - PMA_PASSWORD=app
-    # environment:
-    #   - PMA_HOST=34.77.48.114
-    #   - PMA_USER=mliguori
-    #   - PMA_PASSWORD=magma19
-    # restart: never
     ports:
       - 8080:80
 
